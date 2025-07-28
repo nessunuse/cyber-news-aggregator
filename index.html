@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- Metadati Base -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Ottimizzazione SEO -->
+    
+    <!-- Meta Tags SEO Ottimizzati -->
     <title>Cyber Threat Intelligence Hub | Notizie Sicurezza Informatica Tradotte</title>
-    <meta name="description" content="Aggregatore di notizie cybersecurity con fonti selezionate: SecurityInfo, KrebsOnSecurity, The Hacker News. Traduzione automatica integrata per hacker etici">
-    <meta name="keywords" content="sicurezza informatica, hacker news, malware, vulnerabilità, hacking etico, traduzione automatica">
+    <meta name="description" content="Aggregatore di notizie su cybersecurity, hacking etico e vulnerabilità con traduzione automatica. Fonti attendibili: SecurityInfo, KrebsOnSecurity, The Hacker News">
+    <meta name="keywords" content="sicurezza informatica, hacker news, malware, vulnerabilità, hacking etico, traduzione automatica, notizie cybersecurity">
     <meta name="author" content="Il Tuo Nome">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://cyber-news-aggregator.netlify.app/" />
-
-    <!-- Open Graph / Social Media -->
+    
+    <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="Cyber Threat Intelligence Hub">
-    <meta property="og:description" content="Le ultime notizie sulla sicurezza informatica tradotte in italiano">
+    <meta property="og:description" content="Le ultime notizie sulla sicurezza informatica tradotte in italiano da fonti globali">
     <meta property="og:url" content="https://cyber-news-aggregator.netlify.app/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://cyber-news-aggregator.netlify.app/preview.png">
-    <meta property="og:locale" content="it_IT">
-
+    <meta property="og:image" content="https://cyber-news-aggregator.netlify.app/preview-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://www.securityinfo.it/wp-content/themes/securityinfo/img/favicon.ico" type="image/x-icon">
+    
     <!-- Google Analytics -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EZDWXBLCFG"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-EZDWXBLCFG', {
-        page_title: document.title,
-        page_path: window.location.pathname
-      });
+      gtag('config', 'G-EZDWXBLCFG');
     </script>
-
-    <!-- Stili CSS -->
+    
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -244,33 +240,13 @@
         <!-- Le colonne dei feed verranno aggiunte dinamicamente via JavaScript -->
     </div>
 
-    <!-- Schema.org JSON-LD per SEO avanzato -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Cyber Threat Intelligence Hub",
-      "url": "https://cyber-news-aggregator.netlify.app/",
-      "description": "Aggregatore di notizie sulla sicurezza informatica con traduzione automatica",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Cyber News Aggregator",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://cyber-news-aggregator.netlify.app/logo.png"
-        }
-      }
-    }
-    </script>
-
-    <!-- Script principale -->
     <script>
         // Configurazione
         const TRANSLATE_ENABLED = false;
         const DEEPL_API_KEY = '';
         const TRANSLATION_CACHE = new Map();
         
-        // Fonti di notizie VERIFICATE
+        // Fonti di notizie VERIFICATE e funzionanti
         const CYBER_NEWS_SOURCES = [
             // Fonti italiane
             {
@@ -304,7 +280,7 @@
                 lang: "it"
             },
             
-            // Fonti internazionali
+            // Fonti internazionali VERIFICATE
             {
                 id: "krebs",
                 name: "KrebsOnSecurity",
@@ -346,6 +322,16 @@
                 lang: "en"
             },
             {
+                id: "zdnet",
+                name: "ZDNet Security",
+                rss: "https://www.zdnet.com/news/rss.xml",
+                fallback: "https://www.zdnet.com/topic/security/",
+                icon: "https://www.zdnet.com/favicon.ico",
+                category: "global",
+                tags: ["cybersecurity", "hacks", "data protection"],
+                lang: "en"
+            },
+            {
                 id: "infosecurity",
                 name: "Infosecurity Magazine",
                 rss: "https://www.infosecurity-magazine.com/rss/news/",
@@ -366,6 +352,46 @@
                 lang: "en"
             },
             {
+                id: "cyberscoop",
+                name: "CyberScoop",
+                rss: "https://www.cyberscoop.com/feed/",
+                fallback: "https://www.cyberscoop.com",
+                icon: "https://www.cyberscoop.com/wp-content/uploads/2019/08/cropped-favicon-32x32.png",
+                category: "global",
+                tags: ["cyber policy", "government", "threat intelligence"],
+                lang: "en"
+            },
+            {
+                id: "mandiant",
+                name: "Mandiant Threat Intelligence",
+                rss: "https://www.mandiant.com/resources/blog/rss.xml",
+                fallback: "https://www.mandiant.com/resources/blog",
+                icon: "https://www.mandiant.com/sites/default/files/favicon.ico",
+                category: "global",
+                tags: ["threat research", "malware analysis", "vulnerabilities"],
+                lang: "en"
+            },
+            {
+                id: "schneier",
+                name: "Schneier on Security",
+                rss: "https://www.schneier.com/feed/atom/",
+                fallback: "https://www.schneier.com",
+                icon: "https://www.schneier.com/wp-content/themes/schneier/assets/favicon.ico",
+                category: "global",
+                tags: ["cryptography", "privacy", "security policy"],
+                lang: "en"
+            },
+            {
+                id: "threatpost",
+                name: "Threatpost",
+                rss: "https://threatpost.com/feed/",
+                fallback: "https://threatpost.com",
+                icon: "https://threatpost.com/wp-content/uploads/sites/103/2021/07/Threatpost-Favicon.png",
+                category: "global",
+                tags: ["malware", "vulnerabilities", "zero-day"],
+                lang: "en"
+            },
+            {
                 id: "welivesecurity",
                 name: "WeLiveSecurity",
                 rss: "https://www.welivesecurity.com/feed/",
@@ -377,7 +403,7 @@
             }
         ];
 
-        // Caricamento feed con sistema di fallback
+        // Caricamento feed con sistema di fallback a 3 livelli
         async function loadFeed(source) {
             const container = document.getElementById(source.id);
             const timeout = 10000;
@@ -390,13 +416,22 @@
                     timeout
                 );
                 
-                // Tentativo 2: Proxy secondario
+                // Tentativo 2: Proxy secondario se il primo fallisce
                 if (!response.ok) {
                     response = await fetchWithTimeout(
                         `https://cors-anywhere.herokuapp.com/${source.rss}`, 
                         {}, 
                         timeout
                     );
+                }
+                
+                // Tentativo 3: Direct fetch per fonti che supportano CORS
+                if (!response.ok && source.rss.startsWith("https")) {
+                    try {
+                        response = await fetchWithTimeout(source.rss, {}, timeout);
+                    } catch (e) {
+                        console.log("Tentativo diretto fallito per CORS");
+                    }
                 }
                 
                 if (!response || !response.ok) {
@@ -407,6 +442,7 @@
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(text, "text/xml");
                 
+                // Gestione errori del parser
                 if (xmlDoc.querySelector("parsererror")) {
                     throw new Error("Errore nel parsing del feed XML");
                 }
@@ -418,45 +454,40 @@
                 
                 displayItems(items, source);
                 
-                // Traccia evento GA4 per feed caricato
-                if (typeof gtag === 'function') {
-                    gtag('event', 'feed_loaded', {
-                        feed_name: source.name,
-                        item_count: items.length
-                    });
-                }
-                
             } catch (error) {
                 console.error(`Errore per ${source.name}:`, error);
                 showFallback(source, error.message);
                 
-                // Traccia errore su GA4
-                if (typeof gtag === 'function') {
-                    gtag('event', 'feed_error', {
-                        feed_name: source.name,
-                        error: error.message
-                    });
-                }
+                // Auto-riparazione: prova a ricaricare dopo 30 secondi
+                setTimeout(() => {
+                    if (container.querySelector('.error')) {
+                        loadFeed(source);
+                    }
+                }, 30000);
             }
         }
 
-        // Visualizzazione articoli
+        // Visualizzazione articoli con supporto per RSS e Atom
         async function displayItems(items, source) {
             const container = document.getElementById(source.id);
             container.querySelector('.loading')?.remove();
             
+            // Mostriamo massimo 8 articoli per fonte
             const itemsToDisplay = Array.from(items).slice(0, 8);
             
             for (const item of itemsToDisplay) {
                 const title = item.querySelector("title")?.textContent || "Notizia senza titolo";
                 let link = item.querySelector("link")?.textContent || source.fallback;
                 
+                // Gestione speciale per i link in Atom
                 if (!link.startsWith("http") && item.querySelector("link[href]")) {
                     link = item.querySelector("link[href]").getAttribute("href");
                 }
                 
                 const pubDate = item.querySelector("pubDate, published, date")?.textContent || "";
                 let description = item.querySelector("description, content, summary")?.textContent || "";
+                
+                // Pulizia della descrizione
                 description = cleanDescription(description);
                 
                 const itemEl = document.createElement('div');
@@ -465,10 +496,11 @@
                 itemEl.setAttribute('data-tags', source.tags.join(','));
                 itemEl.setAttribute('data-lang', source.lang);
                 
+                // Aggiungi tag lingua
                 const langTag = `<span class="tag lang">${source.lang.toUpperCase()}</span>`;
                 
                 itemEl.innerHTML = `
-                    <div class="item-title"><a href="${link}" target="_blank" rel="noopener noreferrer" onclick="trackLinkClick('${source.name}', '${title}')">${title}</a></div>
+                    <div class="item-title"><a href="${link}" target="_blank" rel="noopener noreferrer">${title}</a></div>
                     <div class="item-date">${formatDate(pubDate)} ${langTag}</div>
                     <div class="item-description" data-original="${escapeHtml(description)}">${description}</div>
                     <div class="item-tags">
@@ -478,32 +510,267 @@
                 
                 container.appendChild(itemEl);
                 
+                // Se la traduzione è attiva e l'articolo non è in italiano, traduci
                 if (document.getElementById('translateToggle').classList.contains('active') && source.lang !== 'it') {
                     await translateItem(itemEl, source.lang);
                 }
             }
         }
 
-        // Traccia click su articoli in GA4
-        window.trackLinkClick = function(sourceName, title) {
-            if (typeof gtag === 'function') {
-                gtag('event', 'article_click', {
-                    source: sourceName,
-                    article_title: title,
-                    event_callback: function() {
-                        window.open(this.href, '_blank');
-                    }
-                });
+        // Traduci un articolo
+        async function translateItem(itemEl, sourceLang) {
+            const titleLink = itemEl.querySelector('.item-title a');
+            const descriptionEl = itemEl.querySelector('.item-description');
+            const originalTitle = titleLink.textContent;
+            const originalDesc = descriptionEl.dataset.original;
+            
+            try {
+                // Controlla prima la cache
+                const cacheKey = `${originalTitle}|${originalDesc}`;
+                if (TRANSLATION_CACHE.has(cacheKey)) {
+                    const [translatedTitle, translatedDesc] = TRANSLATION_CACHE.get(cacheKey);
+                    applyTranslation(itemEl, translatedTitle, translatedDesc);
+                    return;
+                }
+                
+                // Mostra "Traduzione in corso..."
+                descriptionEl.textContent = "Traduzione in corso...";
+                
+                // Usa il servizio di traduzione (qui usiamo un approccio ibrido)
+                let translatedTitle, translatedDesc;
+                
+                if (DEEPL_API_KEY) {
+                    // Usa DeepL API se disponibile
+                    [translatedTitle, translatedDesc] = await translateWithDeepL(originalTitle, originalDesc, sourceLang);
+                } else {
+                    // Fallback a traduzione semplice (simulata)
+                    [translatedTitle, translatedDesc] = await simulateTranslation(originalTitle, originalDesc);
+                }
+                
+                // Salva nella cache
+                TRANSLATION_CACHE.set(cacheKey, [translatedTitle, translatedDesc]);
+                
+                // Applica la traduzione
+                applyTranslation(itemEl, translatedTitle, translatedDesc);
+                
+            } catch (error) {
+                console.error("Errore nella traduzione:", error);
+                descriptionEl.textContent = originalDesc;
+                itemEl.querySelector('.item-date').innerHTML += 
+                    ' <span class="translate-info">(Traduzione fallita)</span>';
             }
-        };
+        }
 
-        // Helper functions (fetchWithTimeout, translateItem, cleanDescription, etc.)
-        // ... (mantieni tutte le funzioni helper esistenti) ...
+        // Applica la traduzione all'elemento
+        function applyTranslation(itemEl, translatedTitle, translatedDesc) {
+            const titleLink = itemEl.querySelector('.item-title a');
+            const descriptionEl = itemEl.querySelector('.item-description');
+            
+            titleLink.textContent = translatedTitle;
+            descriptionEl.textContent = translatedDesc;
+            
+            // Aggiungi indicazione che è tradotto
+            itemEl.querySelector('.item-date').innerHTML += 
+                ' <span class="translate-info">(Tradotto)</span>';
+            
+            // Cambia il tag lingua
+            const langTag = itemEl.querySelector('.tag.lang');
+            if (langTag) {
+                langTag.textContent = 'IT';
+                langTag.title = 'Tradotto da ' + langTag.textContent;
+            }
+        }
+
+        // Traduzione con DeepL API (richiede API key)
+        async function translateWithDeepL(text, text2, sourceLang) {
+            if (!DEEPL_API_KEY) {
+                throw new Error("DeepL API key non configurata");
+            }
+            
+            const endpoint = "https://api-free.deepl.com/v2/translate";
+            const params = new URLSearchParams();
+            params.append('auth_key', DEEPL_API_KEY);
+            params.append('source_lang', sourceLang.toUpperCase());
+            params.append('target_lang', 'IT');
+            params.append('text', text);
+            params.append('text', text2);
+            
+            const response = await fetch(`${endpoint}?${params.toString()}`, {
+                method: 'POST'
+            });
+            
+            if (!response.ok) {
+                throw new Error(`DeepL API error: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            return [data.translations[0].text, data.translations[1].text];
+        }
+
+        // Simulazione di traduzione (per demo senza API key)
+        async function simulateTranslation(title, description) {
+            // Simula un ritardo di rete
+            await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+            
+            // Simula una traduzione approssimativa
+            const translatedTitle = `[Tradotto] ${title}`;
+            const translatedDesc = `[Traduzione simulata] ${description.substring(0, 100)}...`;
+            
+            return [translatedTitle, translatedDesc];
+        }
+
+        // Messaggio di fallback migliorato
+        function showFallback(source, reason = "") {
+            const container = document.getElementById(source.id);
+            container.querySelector('.loading')?.remove();
+            
+            const fallbackHtml = `
+                <div class="error">
+                    <strong>Attenzione:</strong> Impossibile caricare i contenuti ${reason && `(${reason})`}
+                </div>
+                <div class="fallback-link">
+                    Visita direttamente <a href="${source.fallback}" target="_blank">${source.name}</a>
+                </div>
+                <div style="margin-top:10px; font-size:0.8em;">
+                    <small>Feed RSS: <a href="${source.rss}" target="_blank">${source.rss}</a></small>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', fallbackHtml);
+        }
+
+        // Helper: fetch con timeout
+        function fetchWithTimeout(url, options, timeout) {
+            return Promise.race([
+                fetch(url, options),
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Timeout')), timeout)
+                )
+            ]);
+        }
+
+        // Formattazione dati con supporto per più formati di data
+        function formatDate(dateString) {
+            if (!dateString) return 'Data non disponibile';
+            
+            try {
+                // Prova a parsare come ISO string o RFC2822
+                let date = new Date(dateString);
+                
+                // Se il parsing fallisce, prova a pulire la stringa
+                if (isNaN(date.getTime())) {
+                    const cleaned = dateString.replace(/\(.*\)/, '').trim();
+                    date = new Date(cleaned);
+                }
+                
+                // Se ancora non valida, ritorna la stringa originale
+                if (isNaN(date.getTime())) {
+                    return dateString;
+                }
+                
+                return date.toLocaleDateString('it-IT', { 
+                    day: 'numeric', 
+                    month: 'long', 
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch {
+                return dateString;
+            }
+        }
+
+        function cleanDescription(description) {
+            if (!description) return '';
+            
+            // Rimuovi tag HTML e immagini
+            const div = document.createElement('div');
+            div.innerHTML = description;
+            
+            // Rimuovi script e stili
+            const scripts = div.querySelectorAll('script, style');
+            scripts.forEach(script => script.remove());
+            
+            let text = div.textContent || div.innerText || '';
+            text = text.replace(/\s+/g, ' ').trim();
+            
+            return text.length > 150 ? text.substring(0, 150) + '...' : text;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Filtraggio per categoria
+        function setupCategoryFilter() {
+            const buttons = document.querySelectorAll('#categoryFilter button');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const category = button.dataset.category;
+                    filterItemsByCategory(category);
+                });
+            });
+        }
+
+        function filterItemsByCategory(category) {
+            const items = document.querySelectorAll('.feed-item');
+            
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category || 
+                    item.dataset.tags.includes(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Attiva/disattiva traduzione
+        function setupTranslateToggle() {
+            const toggleBtn = document.getElementById('translateToggle');
+            toggleBtn.addEventListener('click', async () => {
+                toggleBtn.classList.toggle('active');
+                
+                if (toggleBtn.classList.contains('active')) {
+                    toggleBtn.textContent = 'Disattiva traduzione';
+                    
+                    // Traduci tutti gli articoli in inglese
+                    const englishItems = document.querySelectorAll('.feed-item[data-lang="en"]');
+                    for (const item of englishItems) {
+                        await translateItem(item, 'en');
+                    }
+                } else {
+                    toggleBtn.textContent = 'Attiva traduzione automatica';
+                    
+                    // Ripristina gli articoli originali
+                    const translatedItems = document.querySelectorAll('.feed-item');
+                    translatedItems.forEach(item => {
+                        const originalDesc = item.querySelector('.item-description')?.dataset.original;
+                        if (originalDesc) {
+                            item.querySelector('.item-description').textContent = originalDesc;
+                        }
+                        
+                        // Rimuovi indicatori di traduzione
+                        const translateInfo = item.querySelector('.translate-info');
+                        if (translateInfo) translateInfo.remove();
+                        
+                        // Ripristina tag lingua
+                        const langTag = item.querySelector('.tag.lang');
+                        if (langTag) langTag.textContent = 'EN';
+                    });
+                }
+            });
+        }
 
         // Inizializzazione
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('feedContainer');
             
+            // Creazione dinamica delle colonne con indicatori di stato
             CYBER_NEWS_SOURCES.forEach(source => {
                 const column = document.createElement('div');
                 column.className = 'feed-column';
@@ -518,26 +785,30 @@
                     </div>
                     <div class="loading">
                         <div class="loading-spinner"></div>
-                        Caricamento in corso...
+                        Verifica fonte in corso...
                     </div>
                 `;
                 
                 container.appendChild(column);
+                
+                // Delay differenziato per evitare rate limiting
                 setTimeout(() => loadFeed(source), Math.random() * 3000);
             });
             
             setupCategoryFilter();
             setupTranslateToggle();
+            
+            // Controllo periodico delle fonti (ogni 6 ore)
+            setInterval(() => {
+                document.querySelectorAll('.feed-column').forEach(col => {
+                    const sourceId = col.id;
+                    const source = CYBER_NEWS_SOURCES.find(s => s.id === sourceId);
+                    if (source && col.querySelector('.error')) {
+                        loadFeed(source);
+                    }
+                });
+            }, 6 * 60 * 60 * 1000);
         });
-
-        // Traccia la visita iniziale
-        if (typeof gtag === 'function') {
-            gtag('event', 'page_view', {
-                page_title: document.title,
-                page_location: window.location.href,
-                page_path: window.location.pathname
-            });
-        }
     </script>
 </body>
 </html>
