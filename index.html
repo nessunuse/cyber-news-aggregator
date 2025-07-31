@@ -450,31 +450,26 @@
             100% { transform: rotate(360deg); }
         }
         
-        /* Error States */
-        .error {
-            color: var(--neon-red);
-            font-style: italic;
+        /* Update Notice */
+        .update-notice {
+            text-align: center;
             padding: 15px;
-            background-color: rgba(40, 0, 10, 0.4);
-            border-radius: 4px;
             margin-bottom: 15px;
-            border: 1px solid rgba(255, 0, 60, 0.3);
-            box-shadow: 0 0 10px rgba(255, 0, 60, 0.1);
+            border-radius: 4px;
+            background-color: rgba(20, 40, 60, 0.4);
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            color: #7fc8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.95em;
         }
         
-        .fallback-link {
-            margin-top: 15px;
-        }
-        
-        .fallback-link a {
-            color: var(--neon-green);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .fallback-link a:hover {
-            text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
-            color: var(--electric-green);
+        .update-notice::before {
+            content: "🔄";
+            font-size: 1.2em;
+            animation: spin 1.5s linear infinite;
         }
         
         /* Podcast Modal */
@@ -813,11 +808,11 @@
                 
             } catch (error) {
                 console.error(`Errore per ${source.name}:`, error);
-                showFallback(source, error.message);
+                showFallback(source);
                 
                 // Auto-riparazione: prova a ricaricare dopo 30 secondi
                 setTimeout(() => {
-                    if (container.querySelector('.error')) {
+                    if (container.querySelector('.update-notice')) {
                         loadFeed(source);
                     }
                 }, 30000);
@@ -869,21 +864,13 @@
             }
         }
 
-        // Messaggio di fallback migliorato
-        function showFallback(source, reason = "") {
+        // Messaggio di aggiornamento
+        function showFallback(source) {
             const container = document.getElementById(source.id);
             container.querySelector('.loading')?.remove();
             
             const fallbackHtml = `
-                <div class="error">
-                    <strong>⚠️ Attenzione:</strong> Impossibile caricare i contenuti ${reason && `(${reason})`}
-                </div>
-                <div class="fallback-link">
-                    Visita direttamente <a href="${source.fallback}" target="_blank">${source.name}</a>
-                </div>
-                <div style="margin-top:10px; font-size:0.8em;">
-                    <small>Feed RSS: <a href="${source.rss}" target="_blank">${source.rss}</a></small>
-                </div>
+                <div class="update-notice">Contenuti in aggiornamento...</div>
             `;
             container.insertAdjacentHTML('beforeend', fallbackHtml);
         }
@@ -1040,7 +1027,7 @@
                 document.querySelectorAll('.feed-column').forEach(col => {
                     const sourceId = col.id;
                     const source = CYBER_NEWS_SOURCES.find(s => s.id === sourceId);
-                    if (source && col.querySelector('.error')) {
+                    if (source && col.querySelector('.update-notice')) {
                         loadFeed(source);
                     }
                 });
